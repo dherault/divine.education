@@ -3,25 +3,31 @@ import { CssBaseline, ThemeProvider } from 'honorable'
 
 import theme from './theme'
 
+import Layout from './components/Layout'
 import Home from './scenes/Home'
 import Authentication from './scenes/Authentication'
+import AuthenticationProvider from './components/AuthenticationProvider'
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={<Home />}
-          />
-          <Route
-            path="authentication"
-            element={<Authentication />}
-          />
-        </Routes>
-      </BrowserRouter>
+      <AuthenticationProvider>
+        <Layout>
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path="/"
+                element={<Home />}
+              />
+              <Route
+                path="authentication"
+                element={<Authentication />}
+              />
+            </Routes>
+          </BrowserRouter>
+        </Layout>
+      </AuthenticationProvider>
     </ThemeProvider>
   )
 }
