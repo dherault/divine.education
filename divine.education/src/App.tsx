@@ -5,6 +5,7 @@ import theme from './theme'
 
 import Layout from './components/Layout'
 import Home from './scenes/Home'
+import Knowledge from './scenes/Knowledge'
 import Authentication from './scenes/Authentication'
 import AuthenticationProvider from './components/AuthenticationProvider'
 
@@ -19,6 +20,10 @@ function App() {
               <Route
                 path="/"
                 element={<Home />}
+              />
+              <Route
+                path="knowledge"
+                element={<Knowledge />}
               />
               <Route
                 path="authentication"

@@ -24,7 +24,6 @@ export const authentication = getAuth(app)
 export const onViewerChange = setPersistence(authentication, browserLocalPersistence)
 .then(() => new Promise(resolve => {
   onAuthStateChanged(authentication, viewer => {
-    console.log('viewer xxx', viewer)
     resolve(viewer)
   })
 }))

@@ -19,15 +19,12 @@ function Layout({ children }: any) {
       <Flex
         align="center"
         flexShrink={0}
+        position="absolute"
+        zIndex={9999}
       >
-        {viewer?.displayName || 'Anonymous'}
+        {viewer?.displayName ? 'Viewer' : 'Anonymous'}
       </Flex>
-      <Flex
-        flexGrow={1}
-        direction="column"
-      >
-        {children}
-      </Flex>
+      {children}
     </Flex>
   )
 }
