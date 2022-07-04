@@ -1,9 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
-import { Config, GoogleAuthProvider, UserCredential, browserLocalPersistence, getAuth, onAuthStateChanged, setPersistence } from 'firebase/auth'
-import * as firebaseui from 'firebaseui'
-import 'firebaseui/dist/firebaseui.css'
+import { GoogleAuthProvider, browserLocalPersistence, getAuth, onAuthStateChanged, setPersistence } from 'firebase/auth'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,14 +21,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 export const analytics = getAnalytics(app)
 export const authentication = getAuth(app)
-export const ui = new firebaseui.auth.AuthUI(authentication)
-export const uiConfig: firebaseui.auth.Config = {
-  signInSuccessUrl: window.location.href,
-  signInOptions: [
-    // List of OAuth providers supported.
-    GoogleAuthProvider.PROVIDER_ID,
-  ],
-}
 export const onViewerChange = setPersistence(authentication, browserLocalPersistence)
 .then(() => new Promise(resolve => {
   onAuthStateChanged(authentication, viewer => {
@@ -38,3 +28,4 @@ export const onViewerChange = setPersistence(authentication, browserLocalPersist
     resolve(viewer)
   })
 }))
+export const googleProvider = new GoogleAuthProvider()

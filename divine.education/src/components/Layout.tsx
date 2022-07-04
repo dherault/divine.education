@@ -20,11 +20,12 @@ function Layout({ children }: any) {
         align="center"
         flexShrink={0}
       >
-        <pre>
-          {JSON.stringify(viewer, null, 2)}
-        </pre>
+        {viewer?.displayName || 'Anonymous'}
       </Flex>
-      <Flex flexGrow={1}>
+      <Flex
+        flexGrow={1}
+        direction="column"
+      >
         {children}
       </Flex>
     </Flex>
