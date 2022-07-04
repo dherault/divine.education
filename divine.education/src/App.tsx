@@ -8,14 +8,15 @@ import Home from './scenes/Home'
 import Knowledge from './scenes/Knowledge'
 import Authentication from './scenes/Authentication'
 import AuthenticationProvider from './components/AuthenticationProvider'
+import articles from './articles'
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AuthenticationProvider>
-        <Layout>
-          <BrowserRouter>
+        <BrowserRouter>
+          <Layout>
             <Routes>
               <Route
                 path="/"
@@ -29,9 +30,16 @@ function App() {
                 path="authentication"
                 element={<Authentication />}
               />
+              {articles.map(({ path, Component }) => (
+                <Route
+                  key={path}
+                  path={`~/${path}`}
+                  element={<Component />}
+                />
+              ))}
             </Routes>
-          </BrowserRouter>
-        </Layout>
+          </Layout>
+        </BrowserRouter>
       </AuthenticationProvider>
     </ThemeProvider>
   )

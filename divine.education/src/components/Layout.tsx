@@ -1,5 +1,6 @@
-import { Flex } from 'honorable'
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { A, Flex } from 'honorable'
 
 import ViewerContext from '../contexts/ViewerContext'
 
@@ -17,12 +18,28 @@ function Layout({ children }: any) {
       overflowX="hidden"
     >
       <Flex
+        py={1}
+        px={2}
         align="center"
         flexShrink={0}
         position="absolute"
         zIndex={9999}
       >
         {viewer?.displayName ? 'Viewer' : 'Anonymous'}
+        <A
+          ml={1}
+          as={Link}
+          to="/"
+        >
+          Home
+        </A>
+        <A
+          ml={1}
+          as={Link}
+          to="/knowledge"
+        >
+          Knowledge
+        </A>
       </Flex>
       {children}
     </Flex>

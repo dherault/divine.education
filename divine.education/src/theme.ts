@@ -1,5 +1,6 @@
 import { mergeTheme } from 'honorable'
 import defaultTheme from 'honorable-theme-default'
+import mpRecipe from 'honorable-recipe-mp'
 
 export default mergeTheme(defaultTheme, {
   name: 'Divine Education',
@@ -10,4 +11,12 @@ export default mergeTheme(defaultTheme, {
       },
     ],
   },
+  global: [
+    ({ container }: any) => container && {
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '66.66%',
+    },
+    mpRecipe(),
+  ],
 })

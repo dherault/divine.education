@@ -1,68 +1,55 @@
+import { Link } from 'react-router-dom'
 import { Button, Div, Flex } from 'honorable'
-import { MouseEvent as ReactMouseEvent, WheelEvent, useCallback, useEffect, useState } from 'react'
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
+// @ts-expect-error
+import { PanZoom } from 'react-easy-panzoom'
 
-const circles: Array<{ x: number, y: number }> = []
+import KnowledgeCard from '../components/KnowledgeCard'
 
-for (let i = 0; i < 100; i++) {
-  circles.push({
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-  })
-}
+import articles from '../articles'
+
+const cards = [
+  {
+    x: 300,
+    y: 300,
+    name: 'About the master',
+  },
+]
 
 function Knowledge() {
   return (
     <Flex
       flexGrow={1}
       overflow="hidden"
+      position="relative"
+      backgroundColor="background-light"
     >
-      <TransformWrapper
-        centerOnInit
-        initialScale={1}
-        initialPositionX={0}
-        initialPositionY={0}
+      <PanZoom
+        enableBoundingBox
+        realPinch
+        style={{ width: '100vw', height: '100vh' }}
+        minZoom={0.1666}
+        maxZoom={1}
+        boundaryRatioVertical={0}
+        boundaryRatioHorizontal={0}
       >
-        {({ zoomIn, zoomOut, resetTransform, ...rest }: any) => (
-          <TransformComponent
-            wrapperStyle={{ flexGrow: 1, display: 'flex' }}
-            contentStyle={{ width: 1920, height: 1080 }}
-          >
-            <Div
+        <Div
+          width="100vw"
+          height="100vh"
+          position="relative"
+        >
+          {articles.map(({ x, y, name, path }) => (
+            <KnowledgeCard
+              key={name}
+              name={name}
               position="absolute"
-              top={0}
-              left={0}
-              backgroundColor="green"
-              width={64}
-              height={64}
+              top={y}
+              left={x}
+              as={Link}
+              to={`/~/${path}`}
             />
-            <Div
-              position="absolute"
-              top="calc(100% - 64px)"
-              left="calc(100% - 64px)"
-              backgroundColor="green"
-              width={64}
-              height={64}
-            />
-            {circles.map(({ x, y }, i) => (
-              <Div
-                position="absolute"
-                left={`${x}%`}
-                top={`${y}%`}
-                width={64}
-                height={64}
-                borderRadius="50%"
-                backgroundColor="red"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                {i}
-              </Div>
-            ))}
-          </TransformComponent>
-        )}
-      </TransformWrapper>
+          ))}
+        </Div>
+      </PanZoom>
     </Flex>
   )
 }
