@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { A, Flex } from 'honorable'
+import { A, Div, Flex, P } from 'honorable'
 
 import ViewerContext from '../contexts/ViewerContext'
 
@@ -21,25 +21,32 @@ function Layout({ children }: any) {
         py={1}
         px={2}
         align="center"
-        flexShrink={0}
         position="absolute"
+        top={0}
+        left={0}
+        right={0}
         zIndex={9999}
       >
-        {viewer?.displayName ? 'Viewer' : 'Anonymous'}
-        <A
-          ml={1}
+        <P
+          fontSize={24}
+          fontWeight="bold"
           as={Link}
           to="/"
+          color="text"
+          textDecoration="none"
+          _hover={{ textDecoration: 'underline' }}
         >
-          Home
-        </A>
+          Divine Education
+        </P>
         <A
-          ml={1}
+          ml={2}
           as={Link}
           to="/knowledge"
         >
           Knowledge
         </A>
+        <Div flexGrow={1} />
+        {viewer?.displayName ? 'Viewer' : 'Anonymous'}
       </Flex>
       {children}
     </Flex>
