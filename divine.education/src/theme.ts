@@ -15,7 +15,7 @@ export default mergeTheme(defaultTheme, {
     ({ container }: any) => container && {
       marginLeft: 'auto',
       marginRight: 'auto',
-      width: '66.66%',
+      width: '50%',
     },
     mpRecipe(),
   ],
