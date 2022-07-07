@@ -1,4 +1,4 @@
-import { Div, H1, P } from 'honorable'
+import { A, Div, H1, H2, P } from 'honorable'
 
 function UniversalLaws() {
   return (
@@ -12,6 +12,31 @@ function UniversalLaws() {
       </P>
       <P mt={2}>
         These laws applies thourough the Creation. <strong>When in doubt, always refer to them.</strong>
+      </P>
+      <Principle
+        title="The principle of mentalism"
+        lead="The All is Mind, the Universe is Mental."
+      >
+        This principle divulgues the true nature of All: the Mind. Therefore ending any materialistic philosophical points of view.
+      </Principle>
+      <P mt={4}>
+        Source:{' '}
+        <A href="https://en.wikipedia.org/wiki/The_Kybalion">Wikipedia</A>
+      </P>
+    </Div>
+  )
+}
+
+function Principle({ title, lead, children }: any) {
+  return (
+    <Div mt={2}>
+      <H2>{title}</H2>
+      <P
+        cursive
+        fontSize={24}
+        mt={1}
+      >
+        {lead}
       </P>
     </Div>
   )
